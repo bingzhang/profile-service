@@ -1,0 +1,10 @@
+# generated files
+bin/
+pkg/
+build/
+.cache
+Gopkg.lock
+.gopath~/
+vendor/
+inamkdep
+users.json
