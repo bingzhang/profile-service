@@ -1,18 +1,19 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"regexp"
-	"sync"
 	"time"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
-// User user profile
+// User profile
 type User struct {
 	UUID      string `json:"uuid"`
 	Name      string `json:"name"`
@@ -20,18 +21,26 @@ type User struct {
 	BirthDate string `json:"birth_date"`
 }
 
-// Users map to user profile
-type Users map[string]User
-
-var gUsersMap = make(Users)
-var gUsersMutex = &sync.Mutex{}
-var gUsersFile = "users.json"
+// User Database
+var gDatabase *sql.DB
+var gDatabaseFile = "profile_demo.db"
 
 func main() {
-	err := loadUsers()
+	var err error
 
+	gDatabase, err = sql.Open("sqlite3", gDatabaseFile)
 	if err != nil {
-		log.Fatal("Unable to load " + gUsersFile + ": " + err.Error())
+		log.Fatal("Failed to open " + gDatabaseFile + ": " + err.Error())
+	}
+
+	statement, err := gDatabase.Prepare("CREATE TABLE IF NOT EXISTS users (uuid TEXT PRIMARY KEY, name TEXT, phone TEXT, birth_date TEXT)")
+	if err != nil {
+		log.Fatal("Unable to access " + gDatabaseFile + ": " + err.Error())
+	}
+
+	_, err = statement.Exec()
+	if err != nil {
+		log.Fatal("Unable to access " + gDatabaseFile + ": " + err.Error())
 	}
 
 	http.HandleFunc("/profile", handler)
@@ -54,19 +63,32 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleGet(w http.ResponseWriter, r *http.Request) {
-	UUID := getUUID(r)
 
-	if len(UUID) == 0 {
+	uuid := getUUID(r)
+
+	if !isValidUUID(uuid) {
 		http.Error(w, "Uuid not applied", http.StatusBadRequest)
 		return
 	}
 
-	gUsersMutex.Lock()
-	user, isPresent := gUsersMap[UUID]
-	gUsersMutex.Unlock()
+	rows, err := gDatabase.Query("SELECT uuid, name, phone, birth_date FROM users WHERE uuid=\"" + uuid + "\"")
+	if err != nil {
+		http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-	if !isPresent {
+	if !rows.Next() {
+		rows.Close()
 		http.Error(w, "User not found", http.StatusNotFound)
+		return
+	}
+
+	var user User
+	err = rows.Scan(&user.UUID, &user.Name, &user.Phone, &user.BirthDate)
+	rows.Close()
+
+	if err != nil {
+		http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
@@ -95,8 +117,7 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	validUUID, _ := regexp.MatchString("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", user.UUID)
-	if !validUUID {
+	if !isValidUUID(user.UUID) {
 		http.Error(w, "Invalid uuid paramter", http.StatusBadRequest)
 		return
 	}
@@ -119,26 +140,69 @@ func handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	gUsersMutex.Lock()
-	gUsersMap[user.UUID] = user
-	saveUsers()
-	gUsersMutex.Unlock()
+	rows, err := gDatabase.Query("SELECT uuid FROM users WHERE uuid=\"" + user.UUID + "\"")
+	if err != nil {
+		http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	userExists := rows.Next()
+	rows.Close()
+
+	if userExists {
+
+		// Update Existing
+
+		statement, err := gDatabase.Prepare("UPDATE users SET name=?, phone=?, birth_date=? WHERE uuid=\"" + user.UUID + "\"")
+		if err != nil {
+			http.Error(w, "Internal Error Occured1: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		_, err = statement.Exec(user.Name, user.Phone, user.BirthDate)
+		if err != nil {
+			http.Error(w, "Internal Error Occured2: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+	} else {
+
+		// Create New
+
+		statement, err := gDatabase.Prepare("INSERT INTO users(uuid, name, phone, birth_date) values(?,?,?,?)")
+		if err != nil {
+			http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		_, err = statement.Exec(user.UUID, user.Name, user.Phone, user.BirthDate)
+		if err != nil {
+			http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
 
 	fmt.Fprintf(w, "OK")
 }
 
 func handleDelete(w http.ResponseWriter, r *http.Request) {
-	UUID := getUUID(r)
+	uuid := getUUID(r)
 
-	if len(UUID) == 0 {
+	if !isValidUUID(uuid) {
 		http.Error(w, "Uuid not applied", http.StatusBadRequest)
 		return
 	}
 
-	gUsersMutex.Lock()
-	delete(gUsersMap, UUID)
-	saveUsers()
-	gUsersMutex.Unlock()
+	statement, err := gDatabase.Prepare("DELETE FROM users WHERE uuid=\"" + uuid + "\"")
+	if err != nil {
+		http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_, err = statement.Exec()
+	if err != nil {
+		http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	fmt.Fprintf(w, "OK")
 }
@@ -151,32 +215,7 @@ func getUUID(r *http.Request) string {
 	return ""
 }
 
-func loadUsers() error {
-
-	_, err := os.Stat(gUsersFile)
-	if os.IsNotExist(err) {
-		return nil
-	}
-
-	var body []byte
-	body, err = ioutil.ReadFile(gUsersFile)
-	if err != nil {
-		return err
-	}
-
-	err = json.Unmarshal(body, &gUsersMap)
-	return err
-}
-
-func saveUsers() error {
-
-	jsonString, err := json.Marshal(gUsersMap)
-	if err != nil {
-		return err
-	}
-
-	jsonData := []byte(jsonString)
-	err = ioutil.WriteFile(gUsersFile, jsonData, 0644)
-
-	return err
+func isValidUUID(uuid string) bool {
+	isValid, _ := regexp.MatchString("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", uuid)
+	return isValid
 }
