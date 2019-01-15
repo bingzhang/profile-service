@@ -29,7 +29,7 @@ type UserRole int
 const (
 	UserRoleUnknown UserRole = iota
 	UserRoleStudent
-	UserRoleStаff
+	UserRoleStaff
 	UserRoleOther
 )
 
@@ -339,7 +339,7 @@ func userRoleFromString(value string) UserRole {
 	if value == "student" {
 		return UserRoleStudent
 	} else if value == "staff" {
-		return UserRoleStаff
+		return UserRoleStaff
 	} else if value == "other" {
 		return UserRoleOther
 	} else {
@@ -351,8 +351,8 @@ func userRoleToString(value UserRole) string {
 	switch value {
 	case UserRoleStudent:
 		return "student"
-	case UserRoleStаff:
-		return "stаff"
+	case UserRoleStaff:
+		return "staff"
 	case UserRoleOther:
 		return "other"
 	default:
