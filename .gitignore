@@ -8,3 +8,4 @@ Gopkg.lock
 vendor/
 inamkdep
 users.json
+profile.db
