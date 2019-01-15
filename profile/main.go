@@ -23,7 +23,7 @@ type User struct {
 
 // User Database
 var gDatabase *sql.DB
-var gDatabaseFile = "profile_demo.db"
+var gDatabaseFile = "profile.db"
 
 func main() {
 	var err error
