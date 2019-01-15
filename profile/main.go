@@ -124,6 +124,15 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 
 	uuid := getUUID(r)
 
+	if len(uuid) > 0 {
+		handleGetUser(w, uuid)
+	} else {
+		handleGetUsers(w)
+	}
+}
+
+func handleGetUser(w http.ResponseWriter, uuid string) {
+
 	if !isValidUUID(uuid) {
 		http.Error(w, "Uuid not applied", http.StatusBadRequest)
 		return
@@ -134,9 +143,9 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
+	defer rows.Close()
 
 	if !rows.Next() {
-		rows.Close()
 		http.Error(w, "User not found", http.StatusNotFound)
 		return
 	}
@@ -144,7 +153,6 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 	var user User
 	var userRole UserRole
 	err = rows.Scan(&user.UUID, &user.Name, &user.Phone, &user.BirthDate, &userRole)
-	rows.Close()
 
 	user.Role = userRoleToString(userRole)
 
@@ -161,6 +169,46 @@ func handleGet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, string(data))
+}
+
+func handleGetUsers(w http.ResponseWriter) {
+
+	rows, err := gDatabase.Query("SELECT uuid, name, phone, birth_date, role FROM users")
+	if err != nil {
+		http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	fmt.Fprintf(w, "[")
+	var count = 0
+	for rows.Next() {
+		var user User
+		var userRole UserRole
+		err = rows.Scan(&user.UUID, &user.Name, &user.Phone, &user.BirthDate, &userRole)
+
+		user.Role = userRoleToString(userRole)
+
+		if err != nil {
+			http.Error(w, "Internal Error Occured: "+err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		data, err := json.Marshal(user)
+
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		if count > 0 {
+			fmt.Fprintf(w, ",")
+		}
+
+		fmt.Fprintf(w, string(data))
+		count++
+	}
+	fmt.Fprintf(w, "]")
 }
 
 func handlePost(w http.ResponseWriter, r *http.Request) {
