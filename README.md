@@ -74,10 +74,11 @@ __Response:__
   - 200
 ```
 {
-  "uuid":<user_uuid>,
-  "name":<name>,
-  "phone":<phone>,
-  "birth_date":<birth_date>,
+  "uuid": <user_uuid>,
+  "name": <name>,
+  "phone": <phone>,
+  "birth_date": <birth_date>,
+  "role": "student" | "staff" | "other"
 }
 ```
 
@@ -87,7 +88,7 @@ __Response:__
 
 __Example:__
 ```
-curl http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
+curl -X GET http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
 ```
 
 ### __POST__ profile API
@@ -96,10 +97,11 @@ __Request:__
 ```
 POST http://localhost:8082/profile
 {
-  "uuid":<user_uuid>,
-  "name":<name>,
-  "phone":<phone>,
-  "birth_date":<birth_date>,
+  "uuid": <user_uuid>,
+  "name": <name>,
+  "phone": <phone>,
+  "birth_date": <birth_date>,
+  "role": "student" | "staff" | "other"
 }
 ```
 
@@ -109,7 +111,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X POST -d '{"uuid":"e92e429f-84b9-4dcc-bf90-f969137d2402", "name":"John Paul", "phone":"+1 650-207-7211", "birth_date":"1956/03/30"}' -H "Content-Type: application/json" http://localhost:8082/profile
+curl -X POST -d '{"uuid":"e92e429f-84b9-4dcc-bf90-f969137d2402", "name":"John Paul", "phone":"+1 650-207-7211", "birth_date":"1956/03/30", "role":"other"}' -H "Content-Type: application/json" http://localhost:8082/profile
 ```
 
 ### __DELETE__ profile API
