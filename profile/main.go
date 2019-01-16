@@ -38,38 +38,58 @@ var gDatabase *sql.DB
 var gDatabaseFile = "profile.db"
 
 func main() {
-	var err error
 
-	err = openDatabase()
+	var err error
+	gDatabase, err = openDatabase(gDatabaseFile)
 	if err != nil {
 		log.Fatal("Failed to open " + gDatabaseFile + ": " + err.Error())
 	}
+	defer gDatabase.Close()
 
 	http.HandleFunc("/profile", handler)
 	log.Fatal(http.ListenAndServe(":8082", nil))
 }
 
-func openDatabase() error {
-	var err error
+func openDatabase(fileName string) (*sql.DB, error) {
 
-	gDatabase, err = sql.Open("sqlite3", gDatabaseFile)
+	db, err := sql.Open("sqlite3", fileName)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	rows, err := gDatabase.Query("SELECT name FROM sqlite_master WHERE name='users'")
+	rows, err := db.Query("SELECT name FROM sqlite_master WHERE name='users'")
 	if err != nil {
-		return err
+		return nil, err
 	}
 	usersExists := rows.Next()
 	rows.Close()
 
-	if usersExists {
+	if !usersExists {
+
+		// Create New
+
+		statement, err := db.Prepare(`CREATE TABLE IF NOT EXISTS users (
+			uuid TEXT UNIQUE PRIMARY KEY NOT NULL DEFAULT (''),
+			name TEXT NOT NULL DEFAULT (''),
+			phone TEXT NOT NULL DEFAULT (''),
+			birth_date TEXT NOT NULL DEFAULT (''),
+			role INTEGER NOT NULL DEFAULT (0)
+		)`)
+		if err != nil {
+			return nil, err
+		}
+
+		_, err = statement.Exec()
+		if err != nil {
+			return nil, err
+		}
+
+	} else {
 
 		// Already Exits
 
 		var roleExists int
-		rows, err = gDatabase.Query("SELECT COUNT(*) AS COUNT FROM pragma_table_info('users') WHERE name='role'")
+		rows, err = db.Query("SELECT COUNT(*) AS COUNT FROM pragma_table_info('users') WHERE name='role'")
 		if err == nil && rows.Next() {
 			rows.Scan(&roleExists)
 		}
@@ -77,32 +97,18 @@ func openDatabase() error {
 		if roleExists == 0 {
 			// Add 'role' column
 
-			statement, err := gDatabase.Prepare("ALTER TABLE users ADD COLUMN role INTEGER NOT NULL DEFAULT (0)")
+			statement, err := db.Prepare("ALTER TABLE users ADD COLUMN role INTEGER NOT NULL DEFAULT (0)")
 			if err != nil {
-				return err
+				return nil, err
 			}
 
 			_, err = statement.Exec()
 			if err != nil {
-				return err
+				return nil, err
 			}
 		}
-
-	} else {
-
-		// Create New
-
-		statement, err := gDatabase.Prepare("CREATE TABLE IF NOT EXISTS users (uuid TEXT UNIQUE PRIMARY KEY NOT NULL DEFAULT (''), name TEXT NOT NULL DEFAULT (''), phone TEXT NOT NULL DEFAULT (''), birth_date TEXT NOT NULL DEFAULT (''), role INTEGER NOT NULL DEFAULT (0))")
-		if err != nil {
-			return err
-		}
-
-		_, err = statement.Exec()
-		if err != nil {
-			return err
-		}
 	}
-	return nil
+	return db, nil
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
