@@ -7,6 +7,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 	"regexp"
 	"time"
 
@@ -52,7 +54,15 @@ func main() {
 
 func openDatabase(fileName string) (*sql.DB, error) {
 
-	db, err := sql.Open("sqlite3", fileName)
+	path := filepath.Join(string(filepath.Separator), "var", "lib", "profile")
+
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		path = fileName
+	} else {
+		path = filepath.Join(path, fileName)
+	}
+
+	db, err := sql.Open("sqlite3", path)
 	if err != nil {
 		return nil, err
 	}
