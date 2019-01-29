@@ -63,6 +63,8 @@ func uiConfigHandler(w http.ResponseWriter, r *http.Request) {
 		handleUIConfigGet(w, r)
 	case "POST":
 		handleUIConfigPost(w, r)
+	case "DELETE":
+		handleUIConfigDelete(w, r)
 	default:
 		http.Error(w, "Method not supported", http.StatusBadRequest)
 	}
@@ -93,5 +95,28 @@ func handleUIConfigPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	gUIConfig = body
+	fmt.Fprintf(w, "OK")
+}
+
+func handleUIConfigDelete(w http.ResponseWriter, r *http.Request) {
+	path := uiConfigPath()
+
+	if path == gUIConfigFile {
+		http.Error(w, "Unable to perform operation", http.StatusBadRequest)
+		return
+	}
+
+	err := os.Remove(path)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = openUIConfig()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	fmt.Fprintf(w, "OK")
 }

@@ -61,9 +61,10 @@ $ go build
 $ ./profile_demo
 ```
 
-## Usage
+## profile API
 
 ### __GET__ profile API
+Retrieves user profile.
 
 __Request:__
 ```
@@ -92,6 +93,7 @@ curl -X GET http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2
 ```
 
 ### __POST__ profile API
+Adds/updates user profile.
 
 __Request:__
 ```
@@ -115,6 +117,7 @@ curl -X POST -d '{"uuid":"e92e429f-84b9-4dcc-bf90-f969137d2402", "name":"John Pa
 ```
 
 ### __DELETE__ profile API
+Deletes user profile.
 
 __Request:__
 ```
@@ -130,7 +133,10 @@ __Example:__
 curl -X DELETE http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
 ```
 
+## ui/config API
+
 ### __GET__ ui/config API
+Retrieves current UI config.
 
 __Request:__
 ```
@@ -153,6 +159,7 @@ curl -X GET http://localhost:8082/ui/config
 ```
 
 ### __POST__ ui/config API
+Updates current UI config.
 
 __Request:__
 ```
@@ -168,5 +175,22 @@ __Response:__
 __Example:__
 ```
 curl -X POST -d "@uiconfig.json" -H "Content-Type: application/json" http://localhost:8082/ui/config
-curl -X POST -d "@/Users/misho/Downloads/profile_uisettings.json" -H "Content-Type: application/json" http://localhost:8082/ui/config
+```
+
+### __DELETE__ ui/config API
+Resets current UI config to initial.
+
+__Request:__
+```
+DELETE http://localhost:8082/ui/config
+```
+
+__Response:__
+  - 200 OK
+  - 404 "Unable to perform operation"
+  - 500 <error_description>
+
+__Example:__
+```
+curl -X DELETE http://localhost:8082/ui/config
 ```
