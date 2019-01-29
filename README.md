@@ -129,3 +129,44 @@ __Example:__
 ```
 curl -X DELETE http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
 ```
+
+### __GET__ ui/config API
+
+__Request:__
+```
+GET http://localhost:8082/ui/config
+```
+
+__Response:__
+  - 200
+```
+<config data>
+```
+
+  - 404 "UI Config not set."
+
+  - 500 <error_description>
+
+__Example:__
+```
+curl -X GET http://localhost:8082/ui/config
+```
+
+### __POST__ ui/config API
+
+__Request:__
+```
+POST http://localhost:8082/ui/config
+<config data>
+```
+
+__Response:__
+  - 200 OK
+  - 404 <error_description>
+  - 500 "Failed to save ui config: ..."
+
+__Example:__
+```
+curl -X POST -d "@uiconfig.json" -H "Content-Type: application/json" http://localhost:8082/ui/config
+curl -X POST -d "@/Users/misho/Downloads/profile_uisettings.json" -H "Content-Type: application/json" http://localhost:8082/ui/config
+```

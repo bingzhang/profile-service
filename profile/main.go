@@ -18,6 +18,14 @@ func main() {
 		defer closeDatabase()
 	}
 
+	err = openUIConfig()
+	if err != nil {
+		// log.Fatal("Failed to open UI config: " + err.Error())
+	} else {
+		defer closeUIConfig()
+	}
+
 	http.HandleFunc("/profile", profileHandler)
+	http.HandleFunc("/ui/config", uiConfigHandler)
 	log.Fatal(http.ListenAndServe(":8082", nil))
 }
