@@ -12,24 +12,24 @@ import (
 var gDatabase *sql.DB
 var gDatabaseFile = "profile.db"
 
-func openDatabase(fileName string) (*sql.DB, error) {
+func openDatabase() error {
 
 	path := filepath.Join(string(filepath.Separator), "var", "lib", "profile")
 
 	if _, err := os.Stat(path); os.IsNotExist(err) {
-		path = fileName
+		path = gDatabaseFile
 	} else {
-		path = filepath.Join(path, fileName)
+		path = filepath.Join(path, gDatabaseFile)
 	}
 
 	db, err := sql.Open("sqlite3", path)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	rows, err := db.Query("SELECT name FROM sqlite_master WHERE name='users'")
 	if err != nil {
-		return nil, err
+		return err
 	}
 	usersExists := rows.Next()
 	rows.Close()
@@ -46,12 +46,12 @@ func openDatabase(fileName string) (*sql.DB, error) {
 			role INTEGER NOT NULL DEFAULT (0)
 		)`)
 		if err != nil {
-			return nil, err
+			return err
 		}
 
 		_, err = statement.Exec()
 		if err != nil {
-			return nil, err
+			return err
 		}
 
 	} else {
@@ -69,14 +69,19 @@ func openDatabase(fileName string) (*sql.DB, error) {
 
 			statement, err := db.Prepare("ALTER TABLE users ADD COLUMN role INTEGER NOT NULL DEFAULT (0)")
 			if err != nil {
-				return nil, err
+				return err
 			}
 
 			_, err = statement.Exec()
 			if err != nil {
-				return nil, err
+				return err
 			}
 		}
 	}
-	return db, nil
+	gDatabase = db
+	return nil
+}
+
+func closeDatabase() {
+	gDatabase.Close()
 }

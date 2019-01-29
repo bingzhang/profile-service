@@ -10,11 +10,13 @@ import (
 func main() {
 
 	var err error
-	gDatabase, err = openDatabase(gDatabaseFile)
+
+	err = openDatabase()
 	if err != nil {
-		log.Fatal("Failed to open " + gDatabaseFile + ": " + err.Error())
+		log.Fatal("Failed to open database: " + err.Error())
+	} else {
+		defer closeDatabase()
 	}
-	defer gDatabase.Close()
 
 	http.HandleFunc("/profile", profileHandler)
 	log.Fatal(http.ListenAndServe(":8082", nil))
