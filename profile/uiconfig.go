@@ -18,7 +18,10 @@ func openUIConfig() error {
 
 	_, err := os.Stat(path)
 	if os.IsNotExist(err) {
-		return nil
+		err = os.Link(gUIConfigFile, path)
+		if err != nil {
+			return err
+		}
 	}
 
 	var body []byte
