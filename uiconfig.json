@@ -236,6 +236,60 @@
 					"roles": ["staff"]
 				}
 			]
+		},
+		"studentLifeInCampus":{
+			"grid":[
+				{
+					"title":{"text":"To Do List", "text-color":"0xff000000" , "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "To Do List"}
+				},
+				{
+					"title":{"text":"Dining", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Dining"}
+				},
+				{
+					"title":{"text":"Events", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Events"}
+				},
+				{
+					"title":{"text":"Navigation", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Navigation"}
+				},
+				{
+					"title":{"text":"Social", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Social"}
+				},
+				{
+					"title":{"text":"Athletics", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Athletics"}
+				},
+				{
+					"title":{"text":"Navigation", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Navigation"}
+				},
+				{
+					"title":{"text":"News", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "News"}
+				},
+				{
+					"title":{"text":"Schedule", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Schedule"}
+				},
+				{
+					"title":{"text":"Grades", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Grades"}
+				}
+			]
 		}
 	}
 }
