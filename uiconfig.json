@@ -77,6 +77,15 @@
 				},
 				{
 					"destination": {
+						"type": "map",
+						"value": "40.1019523,-88.5073129",
+						"title": "University of Illinois"
+					},
+					"title": "Map Widget",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
 						"type": "panel",
 						"value": "form_panel_1"
 					},
