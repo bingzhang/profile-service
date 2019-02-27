@@ -20,7 +20,7 @@ func main() {
 
 	err = openUIConfig()
 	if err != nil {
-		// log.Fatal("Failed to open UI config: " + err.Error())
+		log.Fatal("Failed to initialize UI config service: " + err.Error())
 	} else {
 		defer closeUIConfig()
 	}

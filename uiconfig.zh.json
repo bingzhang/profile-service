@@ -1,0 +1,304 @@
+{
+	"panels": {
+		"home": {
+			"margin": {"top": 64, "left": 12, "right":12, "bottom":0},
+			"inner_gutter": 24,
+			"widgets": [
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://goo.gl/maps/vc7DRLgiMM22",
+						"title": "四處走動"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/campus.jpg"
+					},
+					"roles":["all"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "http://catalog.illinois.edu/general-information/",
+						"title": "基本信息"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/Bardeen-Quad2.jpg"
+					},
+					"roles": ["student"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://fightingillini.com/",
+						"title": "競技"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/athletics.jpg"
+					},
+					"roles":["all"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://krannertcenter.com/calendar",
+						"title": "活動"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/krannert.jpg"
+					},
+					"roles": ["student", "staff"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://courses.illinois.edu/schedule/DEFAULT/DEFAULT",
+						"title": "時間表"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/Altgeld.jpg"
+					},
+					"roles": ["student"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "edit"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/Illinois.jpg"
+					},
+					"roles":["all"]
+				},
+				{
+					"destination": {
+						"type": "map",
+						"value": "40.1019523,-88.5073129",
+						"title": "伊利諾伊大學"
+					},
+					"title": "地圖小工具",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_1"
+					},
+					"title": "靜電面板1",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_2"
+					},
+					"title": "靜電面板2",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_3"
+					},
+					"title": "靜電面板3",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_4"
+					},
+					"title": "靜電面板4",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_5"
+					},
+					"title": "靜電面板5",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_6"
+					},
+					"title": "靜電面板6",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_7"
+					},
+					"title": "靜電面板7",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_8"
+					},
+					"title": "靜電面板8",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_9"
+					},
+					"title": "靜電面板9",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_10"
+					},
+					"title": "靜電面板10",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_1"
+					},
+					"title": "靜電面板11",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_2"
+					},
+					"title": "靜電面板12",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_3"
+					},
+					"title": "靜電面板13",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_4"
+					},
+					"title": "靜電面板14",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_5"
+					},
+					"title": "靜電面板15",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_6"
+					},
+					"title": "靜電面板16",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_7"
+					},
+					"title": "靜電面板17",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_8"
+					},
+					"title": "靜電面板18",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_9"
+					},
+					"title": "靜電面板19",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_10"
+					},
+					"title": "靜電面板20",
+					"roles": ["staff"]
+				}
+			]
+		},
+		"studentLifeInCampus":{
+			"grid":[
+				{
+					"title":{"text":"待辦事項清單", "text-color":"0xff000000" , "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "待辦事項清單"}
+				},
+				{
+					"title":{"text":"餐飲", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "餐飲"}
+				},
+				{
+					"title":{"text":"活動", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "活動"}
+				},
+				{
+					"title":{"text":"導航", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "導航"}
+				},
+				{
+					"title":{"text":"社會", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "社會"}
+				},
+				{
+					"title":{"text":"競技", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "競技"}
+				},
+				{
+					"title":{"text":"導航", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "導航"}
+				},
+				{
+					"title":{"text":"新聞", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "新聞"}
+				},
+				{
+					"title":{"text":"時間表", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "時間表"}
+				},
+				{
+					"title":{"text":"等級", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "等級"}
+				}
+			]
+		}
+	}
+}

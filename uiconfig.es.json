@@ -1,0 +1,304 @@
+{
+	"panels": {
+		"home": {
+			"margin": {"top": 64, "left": 12, "right":12, "bottom":0},
+			"inner_gutter": 24,
+			"widgets": [
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://goo.gl/maps/vc7DRLgiMM22",
+						"title": "Moverse"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/campus.jpg"
+					},
+					"roles":["all"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "http://catalog.illinois.edu/general-information/",
+						"title": "Información general"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/Bardeen-Quad2.jpg"
+					},
+					"roles": ["student"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://fightingillini.com/",
+						"title": "Atletismo"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/athletics.jpg"
+					},
+					"roles":["all"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://krannertcenter.com/calendar",
+						"title": "Eventos"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/krannert.jpg"
+					},
+					"roles": ["student", "staff"]
+				},
+				{
+					"destination": {
+						"type": "web",
+						"value": "https://courses.illinois.edu/schedule/DEFAULT/DEFAULT",
+						"title": "Programar"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/Altgeld.jpg"
+					},
+					"roles": ["student"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "edit"
+					},
+					"image": {
+						"type": "internal",
+						"path": "images/Illinois.jpg"
+					},
+					"roles":["all"]
+				},
+				{
+					"destination": {
+						"type": "map",
+						"value": "40.1019523,-88.5073129",
+						"title": "Universidad de Illinois"
+					},
+					"title": "Widget de mapa",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_1"
+					},
+					"title": "Panel estático 1",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_2"
+					},
+					"title": "Panel estático 2",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_3"
+					},
+					"title": "Panel estático 3",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_4"
+					},
+					"title": "Panel estático 4",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_5"
+					},
+					"title": "Panel estático 5",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_6"
+					},
+					"title": "Panel estático 6",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_7"
+					},
+					"title": "Panel estático 7",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_8"
+					},
+					"title": "Panel estático 8",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_9"
+					},
+					"title": "Panel estático 9",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "form_panel_10"
+					},
+					"title": "Panel estático 10",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_1"
+					},
+					"title": "Panel estático 11",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_2"
+					},
+					"title": "Panel estático 12",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_3"
+					},
+					"title": "Panel estático 13",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_4"
+					},
+					"title": "Panel estático 14",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_5"
+					},
+					"title": "Panel estático 15",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_6"
+					},
+					"title": "Panel estático 16",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_7"
+					},
+					"title": "Panel estático 17",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_8"
+					},
+					"title": "Panel estático 18",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_9"
+					},
+					"title": "Panel estático 19",
+					"roles": ["staff"]
+				},
+				{
+					"destination": {
+						"type": "panel",
+						"value": "web_panel_10"
+					},
+					"title": "Panel estático 20",
+					"roles": ["staff"]
+				}
+			]
+		},
+		"studentLifeInCampus":{
+			"grid":[
+				{
+					"title":{"text":"Lista De Quehaceres", "text-color":"0xff000000" , "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Lista De Quehaceres"}
+				},
+				{
+					"title":{"text":"Comida", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Comida"}
+				},
+				{
+					"title":{"text":"Eventos", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Eventos"}
+				},
+				{
+					"title":{"text":"Navegación", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Navegación"}
+				},
+				{
+					"title":{"text":"Social", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Social"}
+				},
+				{
+					"title":{"text":"Atletismo", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Atletismo"}
+				},
+				{
+					"title":{"text":"Navegación", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Navegación"}
+				},
+				{
+					"title":{"text":"Noticias", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Noticias"}
+				},
+				{
+					"title":{"text":"Programar", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Programar"}
+				},
+				{
+					"title":{"text":"Los grados", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
+					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
+					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "Los grados"}
+				}
+			]
+		}
+	}
+}

@@ -34,7 +34,13 @@ ld: warning: text-based stub file /System/Library/Frameworks//CoreFoundation.fra
 ld: warning: text-based stub file /System/Library/Frameworks//Security.framework/Security.tbd and library file /System/Library/Frameworks//Security.framework/Security are out of sync. Falling back to library file for linking.
 ```
 
-4. Start the service
+4. Ensure `/private/var/lib/profile` directory and its access
+```
+$ sudo mkdir -p "/var/lib/profile"
+$ sudo chmod 777 "/var/lib/profile"
+```
+
+5. Start the service
 ```
 $ ./bin/profile
 ```
@@ -56,7 +62,13 @@ $ cd ~/go/src/profile_demo
 $ go build
 ```
 
-5. Start the service
+5. Ensure `/private/var/lib/profile` directory and its access
+```
+$ sudo mkdir -p "/var/lib/profile"
+$ sudo chmod 777 "/var/lib/profile"
+```
+
+6. Start the service
 ```
 $ ./profile_demo
 ```
@@ -135,12 +147,14 @@ curl -X DELETE http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f96913
 
 ## ui/config API
 
+All API entries take "lang" optional parameter. If it is omitted "en" is assumed. The initial predefined configs are "en", "es" and "zh"
+
 ### __GET__ ui/config API
 Retrieves current UI config.
 
 __Request:__
 ```
-GET http://localhost:8082/ui/config
+GET http://localhost:8082/ui/config?lang=en
 ```
 
 __Response:__
@@ -155,7 +169,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X GET http://localhost:8082/ui/config
+curl -X GET http://localhost:8082/ui/config?lang=en
 ```
 
 ### __POST__ ui/config API
@@ -163,26 +177,26 @@ Updates current UI config.
 
 __Request:__
 ```
-POST http://localhost:8082/ui/config
+POST http://localhost:8082/ui/config?lang=en
 <config data>
 ```
 
 __Response:__
   - 200 OK
   - 404 <error_description>
-  - 500 "Failed to save ui config: ..."
+  - 500 "Failed to store ui config: ..."
 
 __Example:__
 ```
-curl -X POST -d "@uiconfig.json" -H "Content-Type: application/json" http://localhost:8082/ui/config
+curl -X POST -d "@uiconfig.json" -H "Content-Type: application/json" http://localhost:8082/ui/config?lang=en
 ```
 
 ### __DELETE__ ui/config API
-Resets current UI config to initial.
+Resets current UI config to initial versions.
 
 __Request:__
 ```
-DELETE http://localhost:8082/ui/config
+DELETE http://localhost:8082/ui/config?lang=en
 ```
 
 __Response:__
@@ -192,5 +206,5 @@ __Response:__
 
 __Example:__
 ```
-curl -X DELETE http://localhost:8082/ui/config
+curl -X DELETE http://localhost:8082/ui/config?lang=en
 ```
