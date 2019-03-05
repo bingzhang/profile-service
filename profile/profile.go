@@ -248,6 +248,24 @@ func handleProfileDelete(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "OK")
 }
 
+// Utils
+
+func getUUID(r *http.Request) string {
+	keys, ok := r.URL.Query()["uuid"]
+	if ok && len(keys[0]) >= 1 {
+		return keys[0]
+	}
+	return ""
+}
+
+func isValidUUID(uuid string) bool {
+	// e92e429f-84b9-4dcc-bf90-f969137d2402
+	isValid, _ := regexp.MatchString("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", uuid)
+	return isValid
+}
+
+// User Role
+
 func userRoleFromString(value string) UserRole {
 	if value == "student" {
 		return UserRoleStudent

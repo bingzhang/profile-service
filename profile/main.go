@@ -26,6 +26,7 @@ func main() {
 	}
 
 	http.HandleFunc("/profile", profileHandler)
+	http.HandleFunc("/events", eventsHandler)
 	http.HandleFunc("/ui/config", uiConfigHandler)
 	log.Fatal(http.ListenAndServe(":8082", nil))
 }

@@ -208,3 +208,108 @@ __Example:__
 ```
 curl -X DELETE http://localhost:8082/ui/config?lang=en
 ```
+
+## events API
+
+### __GET__ events API
+Retrieves events.
+
+__Paramters:__
+  - "time" (YYYY-MM-DD HH:MM:SS) Retrieves events that start in date of time and that are not finished yet.
+  - "role" (student|staff|other) Retrieves events that has specific user role.
+
+__Request:__
+```
+GET http://localhost:8082/events?time=2019-03-05%2015:00:00&role=student
+```
+
+__Response:__
+  - 200
+```
+[
+{
+  "id": <event id, integer>,
+  "name": <name>,
+  "time": <YYYY-MM-DD HH:MM:SS>,
+  "duration": <duration in minutes>,
+
+  "location_description": <location description>,
+  "location_latitude": <location latitude>,
+  "location_longtitude": <location longtitude>,
+  "location_floor": <location floor>,
+
+  "purchase_description": <purchase description>,
+  "info_url": <info url>,
+
+  "category": <category>,
+  "sub_category": <sub category>,
+
+  "user_role": "student" | "staff" | "other"
+}
+]
+```
+
+  - 500 <error_description>
+
+__Example:__
+```
+curl -X GET http://localhost:8082/events?time=2019-03-05%2015:00:00&role=student
+```
+
+### __POST__ events API
+Adds new events.
+
+__Request:__
+```
+POST http://localhost:8082/events
+[
+  {
+    "name": <name>,
+    "time": <YYYY-MM-DD HH:MM:SS>,
+    "duration": <duration in minutes>,
+
+    "location_description": <location description>,
+    "location_latitude": <location latitude>,
+    "location_longtitude": <location longtitude>,
+    "location_floor": <location floor>,
+
+    "purchase_description": <purchase description>,
+    "info_url": <info url>,
+
+    "category": <category>,
+    "sub_category": <sub category>,
+
+    "user_role": "student" | "staff" | "other"
+  },
+  ...
+]
+```
+
+__Response:__
+  - 200 OK
+  - 500 <error_description>
+
+__Example:__
+```
+curl -X POST -d '[{"name":"Students Conference", "time":"2019-03-05 13:00:00", "duration":240, "location":{"description":"B216, RTX", "latitude":57.0861893, "longtitude":9.9578803, "floor":1}, "purchase_description":"Please Buy", "info_url":"http://www.inabyte.com", "category":"lecture", "sub_category":"physics", "user_role":"student"}]' -H "Content-Type: application/json" http://localhost:8082/events
+```
+
+### __DELETE__ events API
+Deletes events. If not parameter is applied all records from events table are deleted.
+
+__Paramters:__
+  - "id" (#,#,#) Comma separated list of identifiers to delete.
+
+__Request:__
+```
+DELETE http://localhost:8082/events?id=#,#,#
+```
+
+__Response:__
+  - 200 OK
+  - 500 <error_description>
+
+__Example:__
+```
+curl -X DELETE http://localhost:8082/events?id=2,3
+```

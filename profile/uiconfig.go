@@ -68,7 +68,7 @@ func uiConfigPathForLang(lang string) string {
 	return uiConfigPathForFileName(fileName)
 }
 
-func requestLang(r *http.Request) string {
+func getLang(r *http.Request) string {
 	requestLang := "en"
 	langs, isSet := r.URL.Query()["lang"]
 	if isSet && (0 < len(langs)) && (0 < len(langs[0])) {
@@ -100,7 +100,7 @@ func uiConfigHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleUIConfigGet(w http.ResponseWriter, r *http.Request) {
-	configLang := requestLang(r)
+	configLang := getLang(r)
 	configData := gUIConfigsMap[configLang]
 	if configData != nil {
 		fmt.Fprintf(w, string(configData))
@@ -111,7 +111,7 @@ func handleUIConfigGet(w http.ResponseWriter, r *http.Request) {
 
 func handleUIConfigPost(w http.ResponseWriter, r *http.Request) {
 
-	configLang := requestLang(r)
+	configLang := getLang(r)
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -132,7 +132,7 @@ func handleUIConfigPost(w http.ResponseWriter, r *http.Request) {
 
 func handleUIConfigDelete(w http.ResponseWriter, r *http.Request) {
 
-	configLang := requestLang(r)
+	configLang := getLang(r)
 
 	path := uiConfigPathForLang(configLang)
 
