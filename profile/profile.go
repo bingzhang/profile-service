@@ -153,31 +153,31 @@ func handleProfilePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !isValidUUID(user.UUID) {
-		http.Error(w, "Invalid uuid paramter", http.StatusBadRequest)
+		http.Error(w, "Invalid uuid paramter: "+user.UUID, http.StatusBadRequest)
 		return
 	}
 
 	validName, _ := regexp.MatchString("[a-zA-Z]+ [a-zA-Z]+", user.Name)
 	if !validName {
-		http.Error(w, "Invalid name paramter", http.StatusBadRequest)
+		http.Error(w, "Invalid name paramter: "+user.Name, http.StatusBadRequest)
 		return
 	}
 
 	validPhone, _ := regexp.MatchString("^(\\+?1\\s?)?((\\([0-9]{3}\\))|[0-9]{3})[\\s\\-]?[\\0-9]{3}[\\s\\-]?[0-9]{4}$", user.Phone)
 	if !validPhone {
-		http.Error(w, "Invalid phone paramter", http.StatusBadRequest)
+		http.Error(w, "Invalid phone paramter: user.Phone", http.StatusBadRequest)
 		return
 	}
 
 	_, err = time.Parse("2006/01/02", user.BirthDate)
 	if err != nil {
-		http.Error(w, "Invalid birth_date paramter", http.StatusBadRequest)
+		http.Error(w, "Invalid birth_date paramter: "+user.BirthDate, http.StatusBadRequest)
 		return
 	}
 
 	userRole := userRoleFromString(user.Role)
 	if userRole == UserRoleUnknown {
-		http.Error(w, "Invalid role paramter", http.StatusBadRequest)
+		http.Error(w, "Invalid role paramter: "+user.Role, http.StatusBadRequest)
 		return
 	}
 
