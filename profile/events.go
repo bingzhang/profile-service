@@ -138,7 +138,18 @@ func handleEventsPost(w http.ResponseWriter, r *http.Request) {
 		values := []interface{}{}
 
 		for _, event := range events {
+
+			if !isValidTime(event.Time) {
+				http.Error(w, "Invalid time paramter: "+event.Time, http.StatusBadRequest)
+				return
+			}
+
 			userRole := userRoleFromString(event.UserRole)
+			if userRole == UserRoleUnknown {
+				http.Error(w, "Invalid user_role paramter: "+event.UserRole, http.StatusBadRequest)
+				return
+			}
+
 			sql += "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?),"
 
 			values = append(values, event.Name, event.Time, event.Duration,
