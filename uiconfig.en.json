@@ -42,7 +42,7 @@
 				},
 				{
 					"destination": {
-						"type": "web",
+						"type": "events",
 						"value": "https://krannertcenter.com/calendar",
 						"title": "Events"
 					},
