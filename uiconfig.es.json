@@ -50,7 +50,7 @@
 						"type": "internal",
 						"path": "images/krannert.jpg"
 					},
-					"roles": ["student", "staff"]
+					"roles": ["all"]
 				},
 				{
 					"destination": {
