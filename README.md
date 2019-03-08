@@ -80,7 +80,7 @@ Retrieves user profile.
 
 __Request:__
 ```
-GET http://localhost:8082/profile?uuid=<user_uuid>
+GET https://profile.inabyte.com/profile?uuid=<user_uuid>
 ```
 
 __Response:__
@@ -101,7 +101,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X GET http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
+curl -X GET https://profile.inabyte.com/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
 ```
 
 ### __POST__ profile API
@@ -109,7 +109,7 @@ Adds/updates user profile.
 
 __Request:__
 ```
-POST http://localhost:8082/profile
+POST https://profile.inabyte.com/profile
 {
   "uuid": <user_uuid>,
   "name": <name>,
@@ -125,7 +125,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X POST -d '{"uuid":"e92e429f-84b9-4dcc-bf90-f969137d2402", "name":"John Paul", "phone":"+1 650-207-7211", "birth_date":"1956/03/30", "role":"other"}' -H "Content-Type: application/json" http://localhost:8082/profile
+curl -X POST -d '{"uuid":"e92e429f-84b9-4dcc-bf90-f969137d2402", "name":"John Paul", "phone":"+1 650-207-7211", "birth_date":"1956/03/30", "role":"other"}' -H "Content-Type: application/json" https://profile.inabyte.com/profile
 ```
 
 ### __DELETE__ profile API
@@ -133,7 +133,7 @@ Deletes user profile.
 
 __Request:__
 ```
-DELETE http://localhost:8082/profile?uuid=<user_uuid>
+DELETE https://profile.inabyte.com/profile?uuid=<user_uuid>
 ```
 
 __Response:__
@@ -142,7 +142,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X DELETE http://localhost:8082/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
+curl -X DELETE https://profile.inabyte.com/profile?uuid=e92e429f-84b9-4dcc-bf90-f969137d2402
 ```
 
 ## ui/config API
@@ -154,7 +154,7 @@ Retrieves current UI config.
 
 __Request:__
 ```
-GET http://localhost:8082/ui/config?lang=en
+GET https://profile.inabyte.com/ui/config?lang=en
 ```
 
 __Response:__
@@ -169,7 +169,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X GET http://localhost:8082/ui/config?lang=en
+curl -X GET https://profile.inabyte.com/ui/config?lang=en
 ```
 
 ### __POST__ ui/config API
@@ -177,7 +177,7 @@ Updates current UI config.
 
 __Request:__
 ```
-POST http://localhost:8082/ui/config?lang=en
+POST https://profile.inabyte.com/ui/config?lang=en
 <config data>
 ```
 
@@ -188,7 +188,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X POST -d "@uiconfig.json" -H "Content-Type: application/json" http://localhost:8082/ui/config?lang=en
+curl -X POST -d "@uiconfig.json" -H "Content-Type: application/json" https://profile.inabyte.com/ui/config?lang=en
 ```
 
 ### __DELETE__ ui/config API
@@ -196,7 +196,7 @@ Resets current UI config to initial versions.
 
 __Request:__
 ```
-DELETE http://localhost:8082/ui/config?lang=en
+DELETE https://profile.inabyte.com/ui/config?lang=en
 ```
 
 __Response:__
@@ -206,7 +206,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X DELETE http://localhost:8082/ui/config?lang=en
+curl -X DELETE https://profile.inabyte.com/ui/config?lang=en
 ```
 
 ## events API
@@ -220,7 +220,7 @@ __Paramters:__
 
 __Request:__
 ```
-GET http://localhost:8082/events?time=2019-03-05%2015:00:00&role=student
+GET https://profile.inabyte.com/events?time=2019-03-05%2015:00:00&role=student
 ```
 
 __Response:__
@@ -253,7 +253,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X GET http://localhost:8082/events?time=2019-03-05%2015:00:00&role=student
+curl -X GET https://profile.inabyte.com/events?time=2019-03-05%2015:00:00&role=student
 ```
 
 ### __POST__ events API
@@ -261,7 +261,7 @@ Adds new events.
 
 __Request:__
 ```
-POST http://localhost:8082/events
+POST https://profile.inabyte.com/events
 [
   {
     "name": <name>,
@@ -291,7 +291,7 @@ __Response:__
 
 __Example:__
 ```
-curl -X POST -d '[{"name":"Students Conference", "time":"2019-03-05 13:00:00", "duration":240, "location":{"description":"B216, RTX", "latitude":57.0861893, "longtitude":9.9578803, "floor":1}, "purchase_description":"Please Buy", "info_url":"http://www.inabyte.com", "category":"lecture", "sub_category":"physics", "user_role":"student"}]' -H "Content-Type: application/json" http://localhost:8082/events
+curl -X POST -d '[{"name":"Students Conference", "time":"2019-03-05 13:00:00", "duration":240, "location":{"description":"B216, RTX", "latitude":57.0861893, "longtitude":9.9578803, "floor":1}, "purchase_description":"Please Buy", "info_url":"http://www.inabyte.com", "category":"lecture", "sub_category":"physics", "user_role":"student"}]' -H "Content-Type: application/json" https://profile.inabyte.com/events
 ```
 
 ### __DELETE__ events API
@@ -302,7 +302,7 @@ __Paramters:__
 
 __Request:__
 ```
-DELETE http://localhost:8082/events?id=#,#,#
+DELETE https://profile.inabyte.com/events?id=#,#,#
 ```
 
 __Response:__
@@ -311,5 +311,5 @@ __Response:__
 
 __Example:__
 ```
-curl -X DELETE http://localhost:8082/events?id=2,3
+curl -X DELETE https://profile.inabyte.com/events?id=2,3
 ```
