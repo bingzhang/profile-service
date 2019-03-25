@@ -256,7 +256,7 @@
 				{
 					"title":{"text":"餐飲", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
 					"image":{"type": "internal", "path": "images/icon-option-placeholder.png"},
-					"destination":{"type": "web", "value": "https://fightingillini.com/", "title": "餐飲"}
+					"destination":{"type": "food_and_merch", "title": "餐飲"}
 				},
 				{
 					"title":{"text":"活動", "text-color":"0xff000000", "font":{"family":"","size":16,"weight":"bold"}},
